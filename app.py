@@ -1,6 +1,7 @@
 from fake_data import generate_test_data
 from kvt import get_kvt_secret
 from flask import Flask
+from mi_token import get_mi_token
 
 app = Flask(__name__)
 
@@ -20,7 +21,6 @@ print(find_person("x2950000"))
 def get_person(xnumber):
     return test_data[xnumber]
 
-
 @app.route('/get-all', methods=['GET'])
 def get_all():
     return test_data   
@@ -28,6 +28,10 @@ def get_all():
 @app.route('/get-secret', methods=['GET']) 
 def get_secret():
     return get_kvt_secret(KVUri, secretName)
+
+@app.route('/get-mi-token', methods=['GET'])
+def get_token():
+    return get_mi_token()
     
 if __name__ == '__main__':
     app.run(debug=True)
