@@ -1,4 +1,11 @@
 import requests
+import os
+
+def get_env_var():
+    try:
+        return os.environ["IDENTITY_HEADER"]
+    except:
+        return "Could not find IDENTITY_HEADER"
 
 def get_mi_token():
     url = "http://169.254.169.254/metadata/identity/oauth2/token"
@@ -24,5 +31,6 @@ def get_mi_token():
         return(f"Something suboptimal happened: {e}")
 
 if __name__ == "__main__":
-    print(get_mi_token())
+    #print(get_mi_token())
+    print(get_env_var())
 
