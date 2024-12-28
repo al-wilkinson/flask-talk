@@ -17,7 +17,6 @@ def get_person(xnumber):
     try:
         return test_data[xnumber]
     except:
-        print("Person not found")
         return jsonify(message="Person not found."), 404
 
 @app.route('/get-all', methods=['GET'])

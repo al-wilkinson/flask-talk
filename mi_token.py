@@ -1,11 +1,12 @@
 import requests
 import os
+from flask import jsonify
 
 def get_env_var():
     try:
-        return os.environ["IDENTITY_HEADER"]
+        return jsonify(message=os.environ["IDENTITY_HEADER"]), 200
     except:
-        return "Could not find IDENTITY_HEADER"
+        return jsonify(message="Could not find IDENTITY_HEADER"), 404
 
 def get_mi_token():
     url = "http://169.254.169.254/metadata/identity/oauth2/token"

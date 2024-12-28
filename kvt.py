@@ -1,5 +1,6 @@
 from azure.keyvault.secrets import SecretClient
 from azure.identity import DefaultAzureCredential
+from flask import jsonify
 
 # Hard code for dev figuring out
 KVUri = f"https://kvt-demo-01.vault.azure.net/"
@@ -12,10 +13,10 @@ def get_kvt_secret(KVUri, secretName):
     print(f"Retrieving secret from key vault...")
     try:
         retrieved_secret = client.get_secret(secretName)
-        # print(f"The secret is {retrieved_secret.value}")
-        return retrieved_secret.value
+        return jsonify("retrieved_secret.value"), 200
     except Exception as e:
-        print(f"Something suboptimal happened: {e}")   
+        #return f"Something suboptimal happened: {e}" 
+        return jsonify(message="Something suboptimal happened."), 404
 
 if __name__ == "__main__":
     print(get_kvt_secret(KVUri, secretName)) 
