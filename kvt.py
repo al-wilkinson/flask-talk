@@ -13,7 +13,7 @@ def get_kvt_secret(KVUri, secretName):
     print(f"Retrieving secret from key vault...")
     try:
         retrieved_secret = client.get_secret(secretName)
-        return jsonify("retrieved_secret.value"), 200
+        return jsonify(message=retrieved_secret.value), 200
     except Exception as e:
         #return f"Something suboptimal happened: {e}" 
         return jsonify(message="Something suboptimal happened."), 404
