@@ -52,6 +52,16 @@ https://webapp-demo-e4f51d47f18a4aae8366b7cd56e6756a.azurewebsites.net/get-mi-to
 
 Let's configure a managed identity for our web app and see what happens.  Again, we'd normally do this as part of a CI/CD deployment, probably with a user assigned managed identity (to allow for separation of duties between identity provision and development).  We'll do some portal click-ops to show what's going on.
 
-Authenticate to https://portal.azure.com and open our web app.
+Authenticate to https://portal.azure.com and navigate to our web app. Go to the Identity blade and turn on the system assigned managed identity.  Click Save.
+<pre>
+<img align="left" src="./images/portal-managed-identity.png"></br>
+</pre>
+
+Next, we should give this identity some RBAC permissions to access the secret in our predefined key vault.  But, we're going to pause and query the get-mi-token API endpoint again.
+<pre>
+<img align="left" src="./images/token-1.png"></br>
+</pre>
+This time we are issued with a token. We'll save this for later.
+
 
 
