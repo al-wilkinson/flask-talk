@@ -30,7 +30,8 @@ def generate_test_data(num_records):
         lastName = fake.last_name()
         tfn = ''.join(random.choices(string.digits, k=9))
         xnumber = xnumbers[_]
-        data[xnumber] = {"firstname": firstName,  "lastname": lastName, "tfn": tfn}
+        dob = fake.date_of_birth(minimum_age=18, maximum_age=80)
+        data[xnumber] = {"firstname": firstName,  "lastname": lastName, "tfn": tfn, "dob": f'{dob.day}-{dob.month}-{dob.year}'}
     return data
 
 def find_person(xnumber):
