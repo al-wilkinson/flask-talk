@@ -82,3 +82,24 @@ Now we will grant our Web App access to the key vault via the Web App's managed 
 <pre>
 <img align="left" src="./images/portal-secret-iam.png"></br>
 </pre>
+
+Head back to Postman and check the 
+```
+https://webapp-demo-e4f51d47f18a4aae8366b7cd56e6756a.azurewebsites.net/get-secret
+```
+endpoint again.
+
+This time we get our secret returned from the key vault:
+<pre>
+<img align="left" src="./images/postman-get-secret.png"></br>
+</pre>
+
+So far what we are seeing is exactly what we expect.  We have assigned an identity to the web app and granted access to the secret in our key vault.  But, what about the token we grabbed in Postman before we had assigned any permissions to our identity?
+
+Let's try something.  Get the HEADER values.
+
+Delete the web app.  Show the identity has gone.
+
+Deploy an AWS VM - ie nothing connected with Azure.
+
+Show using the token.
