@@ -64,8 +64,17 @@ Next, we should give this identity some RBAC permissions to access the secret in
 This time we are issued with a token. We'll save this for later.
 
 We've created an identity.  Where is this and can we take a look at its properties?
-Connect-MgGraph here
 
+We'll use PowerShell Graph to take a look at Entra.  In my case, I have PowerShell 7 and the Microsoft.Graph modules installed, as well as the required Graph API scopes configured in Entra. So starting PowerShell with ```pwsh``` and then authenticating using:
+```
+Connect-MgGraph -Scopes Application.Read.All
+```
+Then we can add:
+```
+$managedIdentity = Get-MgServicePrincipal -All | Where-Object { $_.DisplayName -like 'webapp*' }
+$managedIdentity
+$managedIdentity.ServicePrincipalType
+```
 
 
 Now we will grant our Web App access to the key vault via the Web App's managed identity.  Go to the IAM page for the secret, because we are using RBAC IAM, rather than the older Access Policies, we can assign access to the individual secret, rather than the entire key vault.  Add the ```Key Vault Secrets User``` role for the managed identity to the secret.
