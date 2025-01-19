@@ -1,7 +1,7 @@
 from fake_data import generate_test_data
 from kvt import get_kvt_secret
 from flask import Flask, jsonify
-from mi_token import get_mi_token, get_env_var
+from mi_token import get_mi_token, get_env_vars
 
 app = Flask(__name__)
 
@@ -31,9 +31,9 @@ def get_secret():
 def get_token():
     return get_mi_token()
 
-@app.route('/get-env-var', methods=['GET'])
-def get_var():
-    return get_env_var()
+@app.route('/get-env-vars', methods=['GET'])
+def get_vars():
+    return get_env_vars()
     
 if __name__ == '__main__':
     app.run(debug=True)
