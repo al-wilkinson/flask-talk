@@ -14,8 +14,9 @@ def get_env_vars():
         #return jsonify(message=os.environ["IDENTITY_ENDPOINT"]), 200
         return envVars
     except:
-        returnVar = {"message": "No environment variables?"}
-        return returnVar
+        # returnVar = {"message": "No environment variables?"}
+        # return returnVar
+        return jsonify(message="No environment variables?"), 404
     
 
 def get_mi_token():
@@ -34,10 +35,11 @@ def get_mi_token():
         response = requests.get(url, headers=headers, params=params)
         response.raise_for_status()  # Raise an error for bad status codes
 
+
         # Parse and print the JSON response
         token_response = response.json()
-        print("Access Token:", token_response.get("access_token"))
-        #return jsonify(message=token_response.get("access_token")), 200
+        # print("Access Token:", token_response.get("access_token"))
+        return jsonify(message=token_response.get("access_token")), 200
 
     except:
         return jsonify(message="Something suboptimal happened. Have you configured the Managed Identity?"), 403
